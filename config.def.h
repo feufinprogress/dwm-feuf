@@ -45,7 +45,7 @@ static char selbordercolor[]             = "#1b1f23";
 static char selfloatcolor[]              = "#1b1f23";
 
 static char titlenormfgcolor[]           = "#484b4e";
-static char titlenormbgcolor[]           = "#1b1f23";
+static char titlenormbgcolor[]           = "#272a2c";
 static char titlenormbordercolor[]       = "#444444";
 static char titlenormfloatcolor[]        = "#db8fd9";
 
@@ -259,8 +259,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_l,          setmfact,               {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_h,          setcfact,               {.f = +0.25} },
 	{ MODKEY|ShiftMask,             XK_l,          setcfact,               {.f = -0.25} },
-	{ MODKEY|ShiftMask,             XK_o,          setcfact,               {0} },
-	{ MODKEY|Mod4Mask,              XK_g,          togglegaps,             {0} },
+	{ MODKEY|ShiftMask,             XK_o,          setmfact,               {.f = 0.5} },
+	{ MODKEY,                       XK_g,          togglegaps,             {0} },
 	{ MODKEY,                       XK_Tab,        view,                   {0} },
 	{ MODKEY|ControlMask,           XK_z,          showhideclient,         {0} },
 	{ MODKEY|ShiftMask,             XK_q,          killclient,             {0} },
@@ -269,7 +269,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_f,          setlayout,              {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,          setlayout,              {.v = &layouts[2]} },
 	{ MODKEY|ControlMask,           XK_Return,     mirrorlayout,           {0} },          /* flextile, flip master and stack areas */
-	{ MODKEY,                       XK_space,      setlayout,              {0} },
+	{ MODKEY,                       XK_p,          setlayout,              {0} },
 	{ MODKEY|ShiftMask,             XK_space,      togglefloating,         {0} },
 	{ MODKEY,                       XK_s,          togglescratch,          {.ui = 0 } },
 	{ MODKEY|ControlMask,           XK_s,          setscratch,             {.ui = 0 } },
