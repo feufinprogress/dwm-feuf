@@ -4,6 +4,8 @@
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #define CMD(...)   { .v = (const char*[]){ __VA_ARGS__, NULL } }
 
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx       = 1;   /* border pixel of windows */
 static const unsigned int snap           = 5;  /* snap pixel */
@@ -246,6 +248,10 @@ static const char *dmenucmd[] = {
 };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *explorercmd[]  = { "nautilus", NULL };
+static const char *upvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+2%", NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-2%", NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+
 
 static const Key keys[] = {
 	/* modifier                     key            function                argument */
@@ -272,8 +278,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,          setlayout,              {0} },
 	{ MODKEY|ShiftMask,             XK_space,      togglefloating,         {0} },
 	{ MODKEY,                       XK_s,          togglescratch,          {.ui = 0 } },
-	{ MODKEY|ControlMask,           XK_s,          setscratch,             {.ui = 0 } },
-	{ MODKEY|ShiftMask,             XK_s,          removescratch,          {.ui = 0 } },
+	{ MODKEY|ShiftMask,             XK_s,          setscratch,             {.ui = 0 } },
+	{ MODKEY|ControlMask,           XK_s,          removescratch,          {.ui = 0 } },
 	{ MODKEY|ShiftMask,             XK_x,          togglefakefullscreen,   {0} },
 	{ MODKEY,                       XK_x,          fullscreen,             {0} },
 	{ MODKEY,                       XK_minus,      scratchpad_show,        {0} },
@@ -285,6 +291,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period,     tagmon,                 {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_Tab,        tagswapmon,             {.i = +1 } },
 	{ MODKEY|Mod4Mask|ControlMask,  XK_period,     tagswapmon,             {.i = -1 } },
+  { 0,                            XF86XK_AudioLowerVolume, spawn,        {.v = downvol } },
+	{ 0,                            XF86XK_AudioMute, spawn,               {.v = mutevol } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn,        {.v = upvol   } },
 	TAGKEYS(                        XK_ampersand,                            0)
 	TAGKEYS(                        XK_eacute,                               1)
 	TAGKEYS(                        XK_quotedbl,                             2)
