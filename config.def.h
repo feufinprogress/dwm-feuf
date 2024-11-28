@@ -248,16 +248,19 @@ static const char *dmenucmd[] = {
 };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *explorercmd[]  = { "nautilus", NULL };
+static const char *emojicmd[]  = { "rofi", "-show", "emoji", NULL };
 static const char *upvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+2%", NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-2%", NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-
+static const char *brightup[] = { "/usr/bin/brightnessctl", "set", "+5%", NULL };
+static const char *brightdown[] = { "/usr/bin/brightnessctl", "set", "5%-", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_space,      spawn,                  {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
 	{ Mod4Mask,                     XK_e,          spawn,                  {.v = explorercmd } },
+	{ Mod4Mask,                     XK_semicolon,  spawn,                  {.v = emojicmd } },
 	{ MODKEY,                       XK_b,          togglebar,              {0} },
 	STACKKEYS(MODKEY,                              focus)
 	STACKKEYS(MODKEY|ShiftMask,                    push)
@@ -294,6 +297,9 @@ static const Key keys[] = {
   { 0,                            XF86XK_AudioLowerVolume, spawn,        {.v = downvol } },
 	{ 0,                            XF86XK_AudioMute, spawn,               {.v = mutevol } },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn,        {.v = upvol   } },
+	{ 0,                            XF86XK_MonBrightnessUp, spawn,         {.v = brightup   } },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn,       {.v = brightdown } },
+
 	TAGKEYS(                        XK_ampersand,                            0)
 	TAGKEYS(                        XK_eacute,                               1)
 	TAGKEYS(                        XK_quotedbl,                             2)
