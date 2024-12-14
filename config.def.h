@@ -247,6 +247,7 @@ static const char *dmenucmd[] = {
 	NULL
 };
 static const char *termcmd[]  = { "kitty", NULL };
+static const char *printscreencmd[]  = { "flameshot", "gui", "-r", "|", "xclip", "-selection", "clipboard", "-t", "image/png", NULL };
 static const char *explorercmd[]  = { "nautilus", NULL };
 static const char *emojicmd[]  = { "rofi", "-show", "emoji", NULL };
 static const char *upvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+2%", NULL };
@@ -261,6 +262,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
 	{ Mod4Mask,                     XK_e,          spawn,                  {.v = explorercmd } },
 	{ Mod4Mask,                     XK_semicolon,  spawn,                  {.v = emojicmd } },
+	{ Mod4Mask|ShiftMask,           XK_s,          spawn,                  {.v = printscreencmd } },
 	{ MODKEY,                       XK_b,          togglebar,              {0} },
 	STACKKEYS(MODKEY,                              focus)
 	STACKKEYS(MODKEY|ShiftMask,                    push)
